@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hello World from August <span role="img" aria-label="thumbs-up">👍</span>
+          Hello World from Alex <span role="img" aria-label="thumbs-up">👍</span>
         </p>
         <a
           className="App-link"
@@ -19,6 +20,8 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <Footer/>
     </div>
   );
 }
