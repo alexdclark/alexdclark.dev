@@ -9,16 +9,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hello World from Sam <span role="img" aria-label="thumbs-up">👍</span>
+          Hello World from Alex <span role="img" aria-label="thumbs-up">👍</span>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          Here we have a WIP as I step into the world of React. Come back soon to see my progress!
+        </p>
       </header>
 
       <Footer/>
