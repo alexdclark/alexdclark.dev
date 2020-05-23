@@ -18,6 +18,8 @@ import {
 // this is just your basic container pointing to all the components in your app
 // those components will contain the styles
 
+// TODO: add examples for more JS in JSX and mapping over components
+
 const basicReactAppHome = () => {
   return (
     <React.Fragment>
@@ -49,7 +51,7 @@ function App() {
       */}
       <Switch>
         <Route exact path="/">
-          {/* When we want to us JS in the JSX return, we wrap it in curly brackets. Until we build out your Home page, let's keep the basic create react app home so it's not an empty page. */}
+          {/* When we want to use JS in the JSX return, we wrap it in curly brackets. Until we build out your Home page, let's keep the basic create react app home so it's not an empty page. */}
           {basicReactAppHome()}
         </Route>
         <Route path="/clock">
