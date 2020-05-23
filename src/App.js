@@ -6,13 +6,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import {
-  // Home,
+  Header,
   Clock,
-  AnimalCrossingCountdown
+  AnimalCrossingCountdown,
+  Contact
 } from './modules';
+
+// You basically want as little as possible styling here
+// this is just your basic container pointing to all the components in your app
+// those components will contain the styles
 
 const basicReactAppHome = () => {
   return (
@@ -37,27 +41,15 @@ function App() {
   return (
     <Router>
     <div>
-      {/* Basic unstyled header that links to different pages. We can add linked in and resume links here as well. */}
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/clock">Clock</Link>
-        </li>
-        <li>
-          <Link to="/animalcrossingcountdown">AnimalCrossingCountdown</Link>
-        </li>
-      </ul>
-
-      <hr />
+      <Header/>
       {/* This Switch is where you add in all your pages. I've added a few pages here
           You want to wrap the "page" in a route and add the route you want for that page.
-          Then you can add to the header above the link to it.
+          Then you can add to the header component with a link to it
+          See modules/header/Header.jsx
       */}
       <Switch>
         <Route exact path="/">
-          {/* When we want to us JS in the JSX return, we wrap it in curly brackets. Until we build out your Home page, let's keep the basic CRA home so it's not an empty page. */}
+          {/* When we want to us JS in the JSX return, we wrap it in curly brackets. Until we build out your Home page, let's keep the basic create react app home so it's not an empty page. */}
           {basicReactAppHome()}
         </Route>
         <Route path="/clock">
@@ -65,6 +57,9 @@ function App() {
         </Route>
         <Route path="/animalcrossingcountdown">
           <AnimalCrossingCountdown />
+        </Route>
+        <Route path="/contact">
+          <Contact />
         </Route>
       </Switch>
     </div>
