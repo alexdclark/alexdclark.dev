@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Footer from './components/Footer.jsx';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +10,8 @@ import {
   Header,
   Clock,
   AnimalCrossingCountdown,
-  Contact
+  Contact,
+  Footer
 } from './modules';
 
 // You basically want as little as possible styling here
@@ -21,6 +21,7 @@ import {
 const basicReactAppHome = () => {
   return (
     <React.Fragment>
+      <Header/>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -41,7 +42,6 @@ function App() {
   return (
     <Router>
     <div>
-      <Header/>
       {/* This Switch is where you add in all your pages. I've added a few pages here
           You want to wrap the "page" in a route and add the route you want for that page.
           Then you can add to the header component with a link to it
