@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: theme('fontFamily.sans');
+}
+
+.section-container {
+  @apply max-w-6xl mx-auto px-6 py-16 md:py-24;
+}
+
+.card {
+  @apply rounded-2xl border border-gray-200/70 dark:border-gray-800/70 bg-white/70 dark:bg-gray-900/70 shadow-sm backdrop-blur;
+}
