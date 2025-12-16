@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cloud Solutions Architect Portfolio
 
-## Available Scripts
+A static-exportable Next.js + TypeScript + Tailwind portfolio built for GitHub Pages and custom Squarespace-managed domains.
 
-In the project directory, you can run:
+## Features
+- App Router Next.js with static export (`output: "export"`) and unoptimized images for GitHub Pages
+- Responsive layout with sticky navigation, mobile menu, and dark/light theme toggle (persisted)
+- Content-driven sections (edit a single file at `src/content/site.ts`)
+- Project cards, experience timeline, certifications list, and contact form UI
+- SEO metadata, Open Graph tags, and custom favicon
+- GitHub Actions workflow to build and deploy to GitHub Pages
 
-### `npm start`
+## Getting started
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Build for production (static export goes to `out/`):
+   ```bash
+   npm run build
+   ```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Environment variables for base paths
+If you deploy to `https://<user>.github.io/<repo>`, set a base path so assets resolve correctly:
+- Local build:
+  ```bash
+  NEXT_PUBLIC_BASE_PATH=/your-repo-name npm run build
+  ```
+- GitHub Actions already supports `NEXT_PUBLIC_BASE_PATH` via repository variables; set `NEXT_PUBLIC_BASE_PATH` to `/your-repo-name` in **Settings → Variables → Actions** when using a project site.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## GitHub Pages deployment
+Deployment is handled by `.github/workflows/deploy.yml` and uses the official Pages actions:
+1. Install dependencies and lint
+2. Build and export the static site (`out/`)
+3. Upload the artifact
+4. Deploy to GitHub Pages
 
-### `npm test`
+After pushing to `main`, GitHub Actions will publish the latest build to Pages.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Custom domain (Squarespace)
+1. Set the custom domain in the **Pages** settings of the GitHub repository and commit the `CNAME` file (already present with `example.com`; replace with your domain).
+2. In Squarespace DNS settings, add the following records:
+   - **A** records for the apex domain pointing to GitHub Pages IPs:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+   - **CNAME** record for `www` pointing to `<username>.github.io` (replace with your GitHub username).
+3. Choose whether to use the apex or `www` as primary. GitHub recommends using `www` with a CNAME because it simplifies TLS, then redirect apex to `www` via the A records. Either works; keep it consistent.
+4. Enable **Enforce HTTPS** in the repository Pages settings once DNS propagates. Certificates usually issue within a few minutes but can take up to 24 hours.
 
-### `npm run build`
+### Updating the CNAME
+Edit the root `CNAME` file to contain only your domain (e.g., `portfolio.example.com`). GitHub Pages will serve that hostname after DNS changes propagate.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Content editing
+All display text and links live in `src/content/site.ts`. Update skills, projects, experience, certifications, and social links in one place. Components consume this content file so sections stay in sync.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Accessibility and UX notes
+- Semantic headings and labels for form fields
+- Keyboard-accessible navigation and buttons
+- Color contrasts and focus styles tuned for light and dark themes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tooling
+- ESLint (`npm run lint`)
+- Prettier (`npm run format`)
+- Tailwind CSS for styling
+- `.editorconfig` for consistent editor defaults
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## License
+MIT
