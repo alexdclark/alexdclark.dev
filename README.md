@@ -32,6 +32,8 @@ If you deploy to `https://<user>.github.io/<repo>`, set a base path so assets re
   ```
 - GitHub Actions already supports `NEXT_PUBLIC_BASE_PATH` via repository variables; set `NEXT_PUBLIC_BASE_PATH` to `/your-repo-name` in **Settings → Variables → Actions** when using a project site.
 
+For **custom domains** (when a `CNAME` file is present), do **not** set `NEXT_PUBLIC_BASE_PATH`. The site builds at the domain root without a repo subpath.
+
 ## GitHub Pages deployment
 Deployment is handled by `.github/workflows/deploy.yml` and uses the official Pages actions:
 1. Install dependencies and lint

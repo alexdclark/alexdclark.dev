@@ -1,9 +1,22 @@
+import fs from "fs";
+
 const normalizeBasePath = (value = "") => {
   if (!value) return "";
   return value.startsWith("/") ? value : `/${value}`;
 };
 
-const basePath = normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH);
+const hasCustomDomain = (() => {
+  try {
+    const cname = fs.readFileSync(new URL("./CNAME", import.meta.url), "utf8").trim();
+    return Boolean(cname);
+  } catch {
+    return false;
+  }
+})();
+
+const basePath = hasCustomDomain
+  ? ""
+  : normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
